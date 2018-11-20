@@ -57,8 +57,8 @@ public class LayeredEntity extends Entity {
 	
 	@Override
 	public boolean collide(Entity e) {
-		// TODO: l?y entity trên cùng ra ?? x? lý va ch?m
-		return false;
+		// TODO: lay entity trên cùng ra di xu lý va cham
+		return getTopEntity().collide(e);
 	}
 
 }

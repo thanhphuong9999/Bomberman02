@@ -33,53 +33,73 @@ public class Flame extends Entity {
 	}
 
 	/**
+         * Tao ra cac tia lua va luu vao mang _flameSegments
 	 * Tao cac FlameSegment, moi segment ung voi mot don vi do dai
 	 */
 	private void createFlameSegments() {
-		 // tinh toan do dai Flame, tuon ung voi so luong segment
-                 // bien last dùng de dánh dau cho segment cuoi cùng
-                 boolean last;
-		//_flameSegments = new FlameSegment[calculatePermitedDistance()];
+		// tinh toan do dai Flame, tuon ung voi so luong segment
+                /* bien last dùng de dánh dau cho segment cuoi cùng
+                last trong Contructor cuar FlameSegment de xac dinh tia lua co phai cuoi cung hay k?
+                (vi phan dau tia lua co hinh danhg khac so voi cac phan khac
+                */
+		_flameSegments = new FlameSegment[calculatePermitedDistance()];
                 // TODO: tao các segment duoi dây
+                boolean last = false;
                 int x = (int)_x;
                 int y = (int)_y;
-                for(int i = 0; i < _flameSegments.length; i++){
-                    last =( i == _flameSegments.length - 1);
+                int n = _flameSegments.length;
+                for(int i = 0; i < n; i++){
+                    last = (i == n - 1);
                     switch(_direction){
-                        case 0: y--; break;
-                        case 1: x++; break;
-                        case 2: y++; break;
-                        case 3: x--; break;
+                        case 0:
+                            y--;
+                            break;
+                        case 1:
+                            x++;
+                            break;
+                        case 2:
+                            y++;
+                            break;
+                        case 3:
+                            x--;
+                            break;
                     }
                     _flameSegments[i] = new FlameSegment(x, y, _direction, last);
                 }
+                
 	}
 
 	/**
+         * calculatePermitedDistance () se tinh toan do dai tia lua
+         * Luu y: Neu tia lua cham voi doi tuong khac (VD: tuong) thi se bi chan lai
 	 * tinh toan do dai cua Flame, neu gap vat can là Brick/Wall, do dài se bi cat ngan
 	 * @return
 	 */
 	private int calculatePermitedDistance() {
-		// TODO: thuc hien tính toán do dài cua Flame
+		// TODO: thuc hien tinh toan do dai cua Flame "lua"
                 int radius = 0;
-                int xa = (int)_x;
-                int ya = (int)_y;
-                while(radius < _radius){
-                    if(_direction == 0) ya--;
-                    if(_direction == 1) xa++;
-                    if(_direction == 2) ya++;
-                    if(_direction == 3) xa--;
-                    
-                    Entity e = _board.getEntity(xa, ya, null);
-                    if(e instanceof  Character){
+                int x = (int) _x;
+                int y = (int) _y;
+                while (radius < _radius) {
+                        if (_direction == 0) y--;
+                        if (_direction == 1) x++;
+                        if (_direction == 2) y++;
+                        if (_direction == 3) x--;
+            
+                        Entity a = _board.getEntity(x, y, null);
+            
+                        if (a instanceof Character) {
+                                ++radius;
+                        }
+                        if (a instanceof Bomb) {
+                                ++radius;
+                        }
+                        if (a.collide(this) == false) {
+                                break;
+                        }
                         radius++;
-                    }
-                    if(e.collide(this) == false){
-                        break;
-                    }
-                    radius++;
                 }
-		return radius;
+                return radius;
 	}
 	
 	public FlameSegment flameSegmentAt(int x, int y) {

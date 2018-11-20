@@ -3,21 +3,20 @@ package uet.oop.bomberman.entities.bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
-
+import uet.oop.bomberman.entities.character.Character;
 
 public class FlameSegment extends Entity {
 
 	protected boolean _last;
 
-	/**
-	 *
+	/*
 	 * @param x
 	 * @param y
 	 * @param direction
-	 * @param last cho bi?t segment này là cu?i cùng c?a Flame hay không,
-	 *                segment cu?i có sprite khác so v?i các segment còn l?i
+	 * @param last cho biet segment này là cuoi cùng cua Flame hay không segment cuoi có sprite khác so voi các segment còn lai
 	 */
-	public FlameSegment(int x, int y, int direction, boolean last) {
+	
+        public FlameSegment(int x, int y, int direction, boolean last) {
 		_x = x;
 		_y = y;
 		_last = last;
@@ -67,7 +66,10 @@ public class FlameSegment extends Entity {
 
 	@Override
 	public boolean collide(Entity e) {
-		// TODO: x? lý khi FlameSegment va ch?m v?i Character
+		// TODO: xu lý khi FlameSegment va cham voi Character
+                if(e instanceof Character){
+                    ((Character) e).kill();
+                }
 		return true;
 	}
 	

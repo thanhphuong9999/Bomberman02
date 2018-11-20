@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 /**
- * T?o vòng l?p cho game, l?u tr? m?t vài tham s? c?u hình toàn c?c,
- * G?i ph??ng th?c render(), update() cho t?t c? các entity
+ * Tao vòng lop cho game, luu tru mot vài tham so cau hình toàn cuc,
+ * Goi phuong thuc render(), update() cho tat ca các entity
  */
 public class Game extends Canvas {
 

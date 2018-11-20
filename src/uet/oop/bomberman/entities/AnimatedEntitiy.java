@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities;
 
 /**
- * Entity có hi?u ?ng ho?t hình
+ * Entity có hieu ung hoat hình
  */
 public abstract class AnimatedEntitiy extends Entity {
 
@@ -9,7 +9,8 @@ public abstract class AnimatedEntitiy extends Entity {
 	protected final int MAX_ANIMATE = 7500;
 	
 	protected void animate() {
-		if(_animate < MAX_ANIMATE) _animate++; else _animate = 0;
+		if(_animate < MAX_ANIMATE) _animate++; 
+                else _animate = 0;
 	}
 
 }

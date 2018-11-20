@@ -118,7 +118,7 @@ public class Bomb extends AnimatedEntitiy {
                     return _allowedToPassThru;
             }
             // TODO: xu lý va cham voi Flame cua Bomb khác
-            if(e instanceof Flame){
+            if(e instanceof Flame && !_exploded){
                     explode();
                     //return true;
             }

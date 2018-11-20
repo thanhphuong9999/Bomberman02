@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
 
 /**
- * Entity c? ??nh, không di chuy?n
+ * Entity co dinh, không di chuyen
  */
 public abstract class Tile extends Entity {
 	
@@ -17,7 +17,7 @@ public abstract class Tile extends Entity {
 	}
 
 	/**
-	 * M?c ??nh không cho b?t c? m?t ??i t??ng nào ?i qua
+	 * Mac dinh không cho bat cu mot doi tuong nào di qua
 	 * @param e
 	 * @return
 	 */

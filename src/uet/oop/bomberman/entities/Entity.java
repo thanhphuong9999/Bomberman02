@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
 
 /**
- * L?p ??i di?n cho t?t c? th?c th? trong game (Bomber, Enemy, Wall, Brick,...)
+ * Lop dai dien cho tat ca thuc th? trong game (Bomber, Enemy, Wall, Brick,...)
  */
 public abstract class Entity implements IRender {
 
@@ -15,15 +15,15 @@ public abstract class Entity implements IRender {
 	protected Sprite _sprite;
 
 	/**
-	 * Ph??ng th?c này ???c g?i liên t?c trong vòng l?p game,
-	 * m?c ?ích ?? x? lý s? ki?n và c?p nh?t tr?ng thái Entity
+	 * Phuong thuc này duoc goi liên tuc trong vòng lap game,
+	 * muc dích la xu lý su kien và cap nhat trang thái Entity
 	 */
 	@Override
 	public abstract void update();
 
 	/**
-	 * Ph??ng th?c này ???c g?i liên t?c trong vòng l?p game,
-	 * m?c ?ích ?? c?p nh?t hình ?nh c?a entity theo tr?ng thái
+	 * Phuong thuc này duoc goi liên tuc trong vòng lap game,
+	 * muc dích la cap nhat hình anh cua entity theo trang thái
 	 */
 	@Override
 	public abstract void render(Screen screen);
@@ -41,7 +41,7 @@ public abstract class Entity implements IRender {
 	}
 
 	/**
-	 * Ph??ng th?c này ???c g?i ?? x? lý khi hai entity va ch?m vào nhau
+	 * Phuong thuc này duoc goi la xu lý khi hai entity va cham vào nhau
 	 * @param e
 	 * @return
 	 */

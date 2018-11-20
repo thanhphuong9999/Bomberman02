@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities.character;
 
+import java.util.ArrayList;
 import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
@@ -16,6 +17,7 @@ import uet.oop.bomberman.entities.bomb.FlameSegment;
 import uet.oop.bomberman.entities.character.enemy.Balloon;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
 import uet.oop.bomberman.entities.tile.Grass;
+import uet.oop.bomberman.entities.tile.item.Item;
 import uet.oop.bomberman.level.Coordinates;
 
 
@@ -24,7 +26,7 @@ public class Bomber extends Character {
     private List<Bomb> _bombs;
     protected Keyboard _input;
     private int step = 5;
-    
+    public static List<Item> _powerups = new ArrayList<>();
     protected int _timeBetweenPutBombs = 0;
     // Neu gia tri nay < 0 thi cho phep dat doi tuong Bomb tiep theo
     // Cu moi lan dat 1 Bomb moi, gia tri nay se duoc reset ve 0 va giam dan trong moi lan update()
@@ -213,9 +215,8 @@ public class Bomber extends Character {
         else if(e.getSprite() == Sprite.bomb){
             return true;
         }
-        else if(e instanceof LayeredEntity){
-            if(((LayeredEntity) e).getTopEntity() instanceof Grass) return true;
-            else return false;
+        else if (e instanceof LayeredEntity) {
+            return e.collide(this);
         }
         else if (e.getSprite() == Sprite.wall) {
             return false;
@@ -257,6 +258,30 @@ public class Bomber extends Character {
         if (_direction != 2 && contactTop) centerY();
         if (_direction != 3 && contactRight) centerX();
     }
+    
+    public void addPowerup(Item p) {
+		if(p.isRemoved()) return;
+		
+		_powerups.add(p);
+		
+		p.setValues();
+	}
+	
+	public void clearUsedPowerups() {
+		Item p;
+		for (int i = 0; i < _powerups.size(); i++) {
+			p = _powerups.get(i);
+			if(p.isActive() == false)
+				_powerups.remove(i);
+		}
+	}
+	
+	public void removePowerups() {
+		for (int i = 0; i < _powerups.size(); i++) {
+				_powerups.remove(i);
+		}
+	}
+    
     private void chooseSprite() {
         switch (_direction) {
             case 0:

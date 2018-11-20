@@ -14,7 +14,7 @@ public class AIMedium extends AI {
 
 	@Override
 	public int calculateDirection() {
-		// TODO: cài ??t thu?t toán tìm ???ng ?i
+		// TODO: cài dat thuat toán tìm duong di
 		return 1;
 	}
 

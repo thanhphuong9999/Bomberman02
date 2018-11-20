@@ -7,8 +7,8 @@ public abstract class AI {
 	protected Random random = new Random();
 
 	/**
-	 * Thu?t toán tìm ???ng ?i
-	 * @return h??ng ?i xu?ng/ph?i/trái/lên t??ng ?ng v?i các giá tr? 0/1/2/3
+	 * Thuat toán tìm duong di
+	 * @return huong di xuong/phai/trái/lên tuong ung voi các giá tri 0/1/2/3
 	 */
 	public abstract int calculateDirection();
 }

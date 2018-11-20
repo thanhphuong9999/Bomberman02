@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Qu?n lý thao tác ?i?u khi?n, load level, render các màn hình c?a game
+ * Quan lý thao tác dieu khien, load level, render các màn hình cua game
  */
 public class Board implements IRender {
 	protected LevelLoader _levelLoader;
@@ -28,14 +28,14 @@ public class Board implements IRender {
 	protected Screen _screen;
 	
 	public Entity[] _entities;
-	public List<Character> _characters = new ArrayList<>();
-	protected List<Bomb> _bombs = new ArrayList<>();
-	private List<Message> _messages = new ArrayList<>();
-	
-	private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
-	
-	private int _time = Game.TIME;
-	private int _points = Game.POINTS;
+        public List<Character> _characters = new ArrayList<>();
+        protected List<Bomb> _bombs = new ArrayList<>();
+        private List<Message> _messages = new ArrayList<>();
+
+        private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused, 4:start
+
+        private int _time = Game.TIME;
+        private int _points = Game.POINTS;
 	
 	public Board(Game game, Keyboard input, Screen screen) {
 		_game = game;
@@ -173,7 +173,7 @@ public class Board implements IRender {
 		
 		return null;
 	}
-
+        
 	public Bomber getBomber() {
 		Iterator<Character> itr = _characters.iterator();
 		
