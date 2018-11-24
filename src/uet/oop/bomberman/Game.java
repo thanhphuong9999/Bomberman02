@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import uet.oop.bomberman.sound.Audio;
 
 /**
  * Tao vòng lop cho game, luu tru mot vài tham so cau hình toàn cuc,
@@ -21,7 +22,7 @@ public class Game extends Canvas {
 	
 	public static final String TITLE = "BombermanGame";
 	
-	private static final int BOMBRATE = 1;
+	private static final int BOMBRATE = 2; // so luong bom
 	private static final int BOMBRADIUS = 1;
 	private static final double BOMBERSPEED = 1.0;
 	
@@ -49,6 +50,7 @@ public class Game extends Canvas {
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	
 	public Game(Frame frame) {
+            
 		_frame = frame;
 		_frame.setTitle(TITLE);
 		
@@ -56,6 +58,8 @@ public class Game extends Canvas {
 		_input = new Keyboard();
 		
 		_board = new Board(this, _input, screen);
+                // TODO: am thanh man
+                Audio.playVictory();
 		addKeyListener(_input);
 	}
 	

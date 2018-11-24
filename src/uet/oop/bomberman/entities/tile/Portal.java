@@ -7,8 +7,9 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Portal extends Tile {
         protected Board _board;
-	public Portal(int x, int y, Sprite sprite) {
+	public Portal(int x, int y, Board board, Sprite sprite) {
 		super(x, y, sprite);
+                _board = board;
 	}
 	
 	@Override

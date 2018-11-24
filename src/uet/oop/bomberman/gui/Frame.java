@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Swing Frame ch?a toàn b? các component
+ * Swing Frame chua toàn bo các component
  */
 public class Frame extends JFrame {
 	

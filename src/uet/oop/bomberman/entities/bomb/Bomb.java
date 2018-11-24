@@ -9,6 +9,7 @@ import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
+import uet.oop.bomberman.sound.Audio;
 
 public class Bomb extends AnimatedEntitiy {
 
@@ -83,8 +84,8 @@ public class Bomb extends AnimatedEntitiy {
                 Character character = _board.getCharacterAtExcluding((int) _x, (int) _y, null);
 		if(character != null){
                     character.kill();
+                    //Audio.playMenuSelect(); loi
                 }
-		
                 // TODO: tao các Flame
                  _flames = new Flame[4];
                  for(int i = 0; i < _flames.length; i++){
@@ -100,8 +101,11 @@ public class Bomb extends AnimatedEntitiy {
 			FlameSegment e = _flames[i].flameSegmentAt(x, y);
 			if(e != null) return e;
 		}
+                
+                // TODO: am thanh bom no
+		Audio.playBombExplode();
 		
-		return null;
+                return null;
 	}
 
 	@Override

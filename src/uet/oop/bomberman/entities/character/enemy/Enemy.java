@@ -13,6 +13,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
 
 import java.awt.*;
+import uet.oop.bomberman.sound.Audio;
 
 public abstract class Enemy extends Character {
 
@@ -155,6 +156,8 @@ public abstract class Enemy extends Character {
 	
 	@Override
 	public void kill() {
+            //TODO: am thanh enemy chet
+                Audio.playMenuMove();
 		if(!_alive) return;
 		_alive = false;
 		
