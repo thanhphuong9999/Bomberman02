@@ -1,2 +1,2 @@
-# Nhap_Bomberman02
+# Game Bomberman02
 Bản Nháp
