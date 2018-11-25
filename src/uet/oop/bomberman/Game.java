@@ -48,7 +48,7 @@ public class Game extends Canvas {
 	
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-	
+	Audio audio;
 	public Game(Frame frame) {
             
 		_frame = frame;
@@ -58,9 +58,11 @@ public class Game extends Canvas {
 		_input = new Keyboard();
 		
 		_board = new Board(this, _input, screen);
+                
                 // TODO: am thanh man
-                Audio.playVictory();
-		addKeyListener(_input);
+		Audio.playGame();
+                
+                addKeyListener(_input);
 	}
 	
 	private void renderGame() {
@@ -89,7 +91,8 @@ public class Game extends Canvas {
 	
 	private void renderScreen() {
 		BufferStrategy bs = getBufferStrategy();
-		if(bs == null) {
+		
+                if(bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
@@ -136,7 +139,8 @@ public class Game extends Canvas {
 				}
 					
 				renderScreen();
-			} else {
+			} 
+                        else {
 				renderGame();
 			}
 				

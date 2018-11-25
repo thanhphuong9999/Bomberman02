@@ -17,6 +17,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import uet.oop.bomberman.sound.Audio;
 
 /**
  * Quan lý thao tác dieu khien, load level, render các màn hình cua game
@@ -31,7 +32,7 @@ public class Board implements IRender {
         public List<Character> _characters = new ArrayList<>();
         protected List<Bomb> _bombs = new ArrayList<>();
         private List<Message> _messages = new ArrayList<>();
-
+        private int maxLevel = 2;
         private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused, 4:start
 
         private int _time = Game.TIME;
@@ -44,8 +45,16 @@ public class Board implements IRender {
 		
 		loadLevel(1); //start in level 1
 	}
+        
+	public void winGame() {
+		_screenToShow = 4;
+		_game.resetScreenDelay();
+		_game.pause();
+                // TODO: tat am thanh man khi bomber chien thang
+                Audio.stopMenu();
+	}
 	
-	@Override
+        @Override
 	public void update() {
 		if( _game.isPaused() ) return;
 		
@@ -82,8 +91,16 @@ public class Board implements IRender {
 		
 	}
 	
-	public void nextLevel() {
-		loadLevel(_levelLoader.getLevel() + 1);
+        public void nextLevel() {
+                // TODO: am thanh chien thang
+                Audio.playVictory();
+		
+                if( maxLevel >= _levelLoader.getLevel()+1) {
+			loadLevel(_levelLoader.getLevel() + 1);
+		}
+		else{
+			winGame();
+		}
 	}
 	
 	public void loadLevel(int level) {
@@ -100,7 +117,8 @@ public class Board implements IRender {
 			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];
 			
 			_levelLoader.createEntities();
-		} catch (LoadLevelException e) {
+		} 
+                catch (LoadLevelException e) {
 			endGame();
 		}
 	}
@@ -114,6 +132,9 @@ public class Board implements IRender {
 		_screenToShow = 1;
 		_game.resetScreenDelay();
 		_game.pause();
+                
+                // TODO: dung am thanh man
+                Audio.stopMenu();
 	}
 	
 	public boolean detectNoEnemies() {
@@ -125,8 +146,8 @@ public class Board implements IRender {
 		
 		return total == 0;
 	}
-	
-	public void drawScreen(Graphics g) {
+        
+        public void drawScreen(Graphics g) {
 		switch (_screenToShow) {
 			case 1:
 				_screen.drawEndGame(g, _points);
@@ -136,6 +157,9 @@ public class Board implements IRender {
 				break;
 			case 3:
 				_screen.drawPaused(g);
+				break;
+			case 4:
+				_screen.drawWinGame(g, _points);
 				break;
 		}
 	}

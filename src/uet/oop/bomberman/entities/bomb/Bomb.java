@@ -82,15 +82,19 @@ public class Bomb extends AnimatedEntitiy {
 		
                 // TODO: xu ly khi Character dung tai vi trí Bomb
                 Character character = _board.getCharacterAtExcluding((int) _x, (int) _y, null);
-		if(character != null){
+		
+                if(character != null){
                     character.kill();
-                    //Audio.playMenuSelect(); loi
                 }
+                
                 // TODO: tao các Flame
                  _flames = new Flame[4];
                  for(int i = 0; i < _flames.length; i++){
                      _flames[i] = new Flame((int)_x, (int)_y, i, Game.getBombRadius(), _board);
                  }
+                 
+                 // TODO: am thanh bom no
+                 Audio.playBombExplode();
 	}
 	
 	public FlameSegment flameAt(int x, int y) {
@@ -101,9 +105,6 @@ public class Bomb extends AnimatedEntitiy {
 			FlameSegment e = _flames[i].flameSegmentAt(x, y);
 			if(e != null) return e;
 		}
-                
-                // TODO: am thanh bom no
-		Audio.playBombExplode();
 		
                 return null;
 	}
@@ -121,11 +122,14 @@ public class Bomb extends AnimatedEntitiy {
                     }
                     return _allowedToPassThru;
             }
+            
             // TODO: xu lý va cham voi Flame cua Bomb khác
+            
             if(e instanceof Flame && !_exploded){
                     explode();
                     //return true;
             }
+            
             return false;
 	}
 }
